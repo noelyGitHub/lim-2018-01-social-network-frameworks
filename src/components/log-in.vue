@@ -1,0 +1,226 @@
+/* eslint-disable */
+<template>
+<div id="section-login" class="content-login">
+  <form>
+      <div class="logo">
+        <img src="../assets/logo3.png" alt="logo">
+      </div>
+      <div class="form-login">
+        <div class="section-Text">
+          <div class="input-field">
+              <i class="material-icons prefix">email</i>
+              <input type="email" id="email" v-model="email" required>
+          </div>
+          <div class="input-field">
+              <i class="material-icons prefix">lock</i>
+              <input type="password" id="password" v-model="password" required>
+          </div>
+        </div>
+      </div>
+      <div class="section-Button">
+        <button v-on:click="login" class="btn btn-large btn-extended grey lighten-4 purple-text">INICIAR SESION</button>
+        <span v-once>{{messages}}</span>
+        <span class="or"> ó con</span>
+      </div>
+      <div class="loginAditional">
+        <span><a v-on:click="singInFacebok"  id="btnLoginFacebook" class="icon-facebook">F</a></span>
+        <span><a v-on:click="singInGoogle" id="btnLoginGoogle" class="icon-google">G</a></span>
+      </div>
+      <div class='section-register'>
+        <span>¿Aún no tienes cuenta?</span><router-link to="/register">Registrate</router-link>
+      </div>
+    </form>
+  </div>
+</template>
+<script>
+/* eslint-disable */
+import firebase from 'firebase';
+import confgFirebase from '../js/confgFirebase'
+export default {
+  name: 'login',
+  data() {
+    return {
+      email: '',
+      password: '',
+      messages: ''
+    };
+  },
+  methods: {
+    login: function (e) {
+      console.log(this.email);
+      const promise = firebase.auth().signInWithEmailAndPassword(email.value, password.value)
+      .then((user) => {
+        alert("exito!");
+        this.$router.push('home');
+      });
+      promise.catch(function(e) {debugger
+       alert(confgFirebase.mesaggeFirebase(error.message))
+      });
+      e.preventDefault();
+    },
+    singInGoogle: (e) => {
+      let provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('https://www.googleapis.com/auth/plus.login');
+      firebase.auth().signInWithPopup(provider)
+        .then((result) => {
+          alert("exito!");
+          confgFirebase.saveDataRedirec(result.user);
+        })
+        .catch(error => {
+          alert(error.message);
+          });
+      e.preventDefault();
+    },
+    singInFacebok: (e) => {
+      const provider = new firebase.auth.FacebookAuthProvider();
+      provider.addScope('public_profile');
+      firebase.auth().signInWithPopup(provider)
+        .then( (result)=> {
+          alert("exito!");
+          confgFirebase.saveDataRedirec(result.user);
+        })
+        .catch(error => {
+          alert(error.message);
+        })
+      e.preventDefault();
+    },
+    registerAnonymus: (e) => {
+      firebase.auth().signInAnonymously();
+      e.preventDefault();
+    },
+  }
+}
+</script>
+<style>
+.or {
+  margin: 5px 0px;
+  display: block;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.icon-facebook,
+.icon-google,
+.icon-mail2 {
+  color: #fff;
+  font-size: 1.2em;
+  border-radius: 100%;
+  padding: 0.8em 1.2em;
+  margin: 0% 1%;
+  background: rgba(178, 178, 178, 0.4);
+  box-shadow: 0px 0px 4px 1px #ccc;
+  cursor: pointer;
+  font-weight: 900;
+}
+.icon-facebook:hover {
+  background: #354277;
+  box-shadow: 0px 0px 4px 1px rgba(204, 204, 204, 0.486);
+}
+.icon-google:hover {
+  background: #db4437;
+  box-shadow: 0px 0px 4px 1px rgba(204, 204, 204, 0.486);
+}
+.content-login {
+  width: 30%;
+  height: 100%;
+  margin: 0% 0% 0% 60%;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  background: #fff;
+  padding: 2em 0em;
+  box-shadow: -1px -1px 20px 0px #8fb8d3;
+}
+.content-login form {
+  text-align: center;
+  height: 100%;
+}
+.logo {
+  padding: 40px 0px 0px 0px;
+}
+.logo img {
+  width: 150px;
+  background: #fff;
+  border-radius: 100%;
+}
+.form-login {
+  padding: 1em 1em;
+  margin: 0px 0px 20px 0px;
+}
+.form-login h3 {
+  color: #475586;
+  font-size: 1.5em;
+  padding-top: 1em;
+}
+.section-text {
+  margin: 20px 0px;
+}
+.section-value {
+  width: 100%;
+  border: none;
+  border-bottom: 0.5px solid #77777761;
+  margin: 20px 0px;
+  padding: 0.3em 0px;
+}
+.section-value:hover {
+  border-bottom: 1px solid #33b8bf;
+}
+.section-value input {
+  width: 90%;
+  border: none;
+  color: #313434;
+  font-size: 16px;
+  outline: none;
+  padding: 0.5em 0em 0em 0em;
+}
+#btnLogin {
+  width: 80%;
+  border: none;
+  outline: none;
+  padding: 1em 0em;
+  margin: 20px 0px;
+  margin-bottom: 25px;
+  color: #fff;
+  text-transform: uppercase;
+  background: #33b8bf;
+  cursor: pointer;
+}
+#messageValide,
+#mensaggeRegisterValide {
+  color: #ff4081;
+  font-size: 0.8em;
+  padding: 1em 0em 2em 0em;
+}
+.loginAditional {
+  align-content: center;
+}
+
+.section-register {
+  padding: 3em 0.5em 0.5em 0.5em;
+}
+.section-register span {
+  color: #77777761;
+}
+.section-register a {
+  color: #33b8bf;
+  cursor: pointer;
+}
+@media (max-width: 950px) {
+  .content-login {
+    width: 50%;
+    margin: 0% 0% 0% 50%;
+  }
+}
+@media (max-width: 750px) {
+  .content-login {
+    width: 80%;
+    margin: 0% 10%;
+  }
+}
+@media (max-width: 490px) {
+  .content-login {
+    width: 100%;
+    margin: 2% 3%;
+    margin: 0%;
+    box-shadow: inset 0px 0px 0px 0px #fff;
+  }
+}
+</style>
