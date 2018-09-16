@@ -47,7 +47,6 @@ export default {
   },
   methods: {
     login: function (e) {
-      console.log(this.email);
       const promise = firebase.auth().signInWithEmailAndPassword(email.value, password.value)
       .then((user) => {
         alert("exito!");

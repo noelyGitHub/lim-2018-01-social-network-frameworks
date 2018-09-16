@@ -1,34 +1,47 @@
 <template>
-<div id='post-main'>
-    <div class='devsite-main-content' id='devsite-main-content'>
-        <div class='devsite-banner-content'>
-            <div class='devsite-post'>
-                <div class='newPost' id="newPost">
-                  <div>
+<div>
+    <menu-nav  v-on:privacy-status='status=$event'></menu-nav>
+    <div id='post-main'>
+        <div class='devsite-main-content' id='devsite-main-content'>
+            <div class='devsite-banner-content'>
+                <div class='devsite-post'>
+                    <div class='newPost' id="newPost">
+                    <div>
                       <insertPost/>
                       <div id='div_new_post'>
                       </div>
-                  </div>
+                    </div>
+                    </div>
+                    <div class='content-post'>
+                    <list-post v-bind:privacy='status'></list-post>
+                    </div>
                 </div>
-                <div class='content-post'>
-                  <posts/>
-                </div>
+                <div class='devsite-page-nav'></div>
             </div>
-            <div class='devsite-page-nav'></div>
+        </div>
+        <div class="new_posts" id="new_posts">
+            <i @click="like(item.uid)" id="icon-pencil" class="material-icons prefix">add</i>
         </div>
     </div>
-    <div class="new_posts" id="new_posts">
-        <i @click="like(item.uid)" id="icon-pencil" class="material-icons prefix">add</i>
-    </div>
-  </div>
+</div>
 </template>
 <script>
 /*eslint-disable  */
 import posts from '@/components/section-post-user.vue'
 import insertPost from '@/components/insert-post'
+import menunav from '@/components/menu'
+import Vue from 'vue'
 export default {
   name: 'boxPost',
-  components: { posts, insertPost }
+  data(){
+    return {
+      status: false
+    }
+  },
+   created() {
+     console.log(this.status)
+   },
+  components: {  'menu-nav':menunav, 'list-post': posts, insertPost }
 }
 </script>
 <style>
@@ -89,7 +102,7 @@ export default {
     height: 3.6em;
     width: 3.6em;
     border-radius: 100%;
-    background: #673AB7;
+    background: #004e66;
     overflow: hidden;
     cursor: pointer;
     bottom: 1em;
@@ -104,5 +117,17 @@ export default {
 #new_posts span {
     font-size: 1.5em;
     color: #fff;
+}
+@media (max-width: 750px){
+  .devsite-post {
+      width: 70%;
+      margin: 0% 15%;
+  }
+}
+@media (max-width: 490px){
+  .devsite-post {
+      width: 100%;
+      margin: 0% 0%;
+  }
 }
 </style>

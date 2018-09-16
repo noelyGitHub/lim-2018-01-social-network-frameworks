@@ -43,6 +43,7 @@ const updatePost = (post, privacy, uidPost) => {
 }
 
 const deletePost = (dataDelete) => {
+  console.log('eliminarrrrrrrrrrrrrrrrrrr')
   const {postRef, userId} = userData()
   let refDeletePost = firebase.database().ref('posts/' + dataDelete)
   let refDeletePostUser = firebase.database().ref('user-posts/' + userId.uid + '/' + dataDelete)
@@ -51,9 +52,9 @@ const deletePost = (dataDelete) => {
 }
 
 const dataPost = (privacy) => {
-/*   const type = menu.postPrivacy*/
+ /*   const type = menu.postPrivacy*/
   const typeView = privacy ? privacy : false 
-  console.log(typeView);
+  console.log(privacy);
   const {postRef, userId} = userData()
   const promise = new Promise((resolve, reject) => {
     const temp = [];
@@ -71,7 +72,8 @@ const dataPost = (privacy) => {
                 post: post.content,
                 like: (Object.keys(like ? like : {}).length),
                 time:  new Date(Math.round((post.time) / 1000.0) * 1000).toLocaleString(),
-                uid: post.uidPost
+                uid: post.uidPost,
+                user: post.uidUser
               })
             }
             if(typeView === false && post.privacy  === 'Público') {
@@ -81,7 +83,8 @@ const dataPost = (privacy) => {
                 post: post.content,
                 like: (Object.keys(like ? like : {}).length),
                 time:  new Date(Math.round((post.time) / 1000.0) * 1000).toLocaleString(),
-                uid: post.uidPost
+                uid: post.uidPost,
+                user: post.uidUser
               })
             }
           })

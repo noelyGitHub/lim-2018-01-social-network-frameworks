@@ -8,6 +8,7 @@
           <option>Público</option>
           <option>Solo yo</option>
         </select>
+        <p>{{message}}</p>
         <input id="button-Publicar" type='button' value='Publicar' v-on:click="insertPost">
       </div>
     </div>
@@ -22,13 +23,16 @@ export default {
     return {
       txtPost: '',
       privacy: '',
+      message:''
     }
   },
   methods:{
     insertPost: function () {
-      console.log(this)
-      console.log(this.txtPost)
-      processing_data.insertNewPost(this.txtPost, this.privacy);
+      if (this.txtPost !== '' || this.privacy !=='') {
+        processing_data.insertNewPost(this.txtPost, this.privacy);
+      } else {
+        this.message = 'Aún existen campos vacios'
+      }   
       
     }
   }
