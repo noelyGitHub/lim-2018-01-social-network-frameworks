@@ -10,7 +10,7 @@
           <small class='time'>
             <span class='time-post-regresivo'>{{item.time}}</span>
           </small>
-          <div class='button-editar-eliminar' v-if="item.user === isCurrent" >
+          <div class='button-editar-eliminar' :id="item.uid" v-if="item.user === isCurrent" >
             <i @click="showOption()" class="material-icons prefix">keyboard_arrow_down</i>
             <ul id="listp" class="listOption" v-if="conf">
               <li  @click="updatePost(item.uid, item.post, item.type)"><i id='edit' class="material-icons prefix">edit</i>editar</li>

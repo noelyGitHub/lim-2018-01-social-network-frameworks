@@ -13,15 +13,16 @@
       </div>
     </li>
     <div class="info-dev">
-      ©2018 Noely Flores • 
+      ©2018 Noely Flores •
       <span>Bootcamp - Laboratoria</span>
     </div>
   </ul>
 </template>
 <script>
+/* eslint-disable */ 
 import firebase from 'firebase'
 export default {
-  name:'list-user',
+  name: 'list-user',
   data() {
     return {
       items: []
@@ -31,9 +32,9 @@ export default {
     const users = firebase.database().ref().child('Usuarios').limitToFirst(9)
     users.on('value', user => {
       console.log(user.val())
-      this.items=user.val()
-      })
-  },
+      this.items = user.val()
+    })
+  }
 }
 </script>
 <style>

@@ -19,7 +19,7 @@
       </div>
       <div class="section-Button">
         <button v-on:click="login" class="btn btn-large btn-extended grey lighten-4 purple-text">INICIAR SESION</button>
-        <span v-once>{{messages}}</span>
+        <span class="message" >{{messages}}</span>
         <span class="or"> ó con</span>
       </div>
       <div class="loginAditional">
@@ -47,12 +47,13 @@ export default {
   },
   methods: {
     login: function (e) {
+      let elem = this
       const promise = firebase.auth().signInWithEmailAndPassword(email.value, password.value)
       .then((user) => {
         this.$router.push('home');
       });
-      promise.catch(function(e) {debugger
-       alert(confgFirebase.mesaggeFirebase(error.message))
+      promise.catch(function(error) {
+        elem.messages = confgFirebase.mesaggeFirebase(error.message)
       });
       e.preventDefault();
     },
@@ -89,7 +90,7 @@ export default {
   }
 }
 </script>
-  <style>
+<style>
   html{
     background: url(../assets/portada2.jpg) no-repeat;
     background-size: cover;
@@ -99,13 +100,17 @@ export default {
       height: 100%;
       background: rgba(57, 49, 49, 0.64);
   }
-
-  .or {
+  .or, .message {
     margin: 5px 0px;
     display: block;
     width: 100%;
     margin-bottom: 30px;
   }
+  .message{
+    color: red;
+    margin: 5px 0px 0px;
+  }
+
   .icon-facebook,
   .icon-google,
   .icon-mail2 {

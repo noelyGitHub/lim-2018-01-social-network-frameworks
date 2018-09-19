@@ -6,7 +6,7 @@
         <select v-model="privacy" id='select-privacy'>
           <option>Público</option>
           <option>Solo yo</option>
-        </select>        
+        </select>
         <input id="button-Publicar" type='button' value='Publicar' v-on:click="insertPost">
         <p>{{message}}</p>
       </div>

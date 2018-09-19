@@ -25,7 +25,7 @@
       </div>
       <div class="section-Button">
           <button v-on:click="register" id="button" class="btn btn-large btn-extended grey lighten-4 purple-text">REGISTRARME</button>
-          <p id="mensaggeRegisterValide"></p>
+          <span class="message" >{{messages}}</span>
       </div>
     </div>
   </div>
@@ -42,11 +42,12 @@ export default {
       txtlastname:'',
       txtemail: '',
       txtpassword: '',
-      txtmessage:''
+      messages:''
     };
   },
   methods: {
     register: function(e) {
+      let elem = this
       if (txtemail.value != '' && txtpassword.value != '' && txtname != '' && txtlastname != '') {
         if (confgFirebase.validateFormateEmail(txtemail.value) === true) {
               firebase.auth().createUserWithEmailAndPassword(txtemail.value, txtpassword.value)
@@ -57,13 +58,13 @@ export default {
                   this.$router.push('home');
                 })
                 .catch(function (error) {
-                  alert(confgFirebase.mesaggeFirebase(error.message))
+                  elem.messages = confgFirebase.mesaggeFirebase(error.message)
                 });
             }else {
-              alert(confgFirebase.validateFormateEmail(txtemail.value))
+              elem.messages = confgFirebase.mesaggeFirebase(error.message)
               }
           }else {
-            alert('Llenar todos los campos');
+            elem.messages = 'Llenar todos los campos';
         }      
         e.preventDefault();
     }
@@ -71,56 +72,62 @@ export default {
 };
 </script>
 <style>
-#button{
-  margin-left: 25%
-}
-.input-field .prefix{
-  color: #004e66;
-}
-.content-login {
-  width: 30%;
-  height: 100%;
-  margin: 0% 5% 0% 65%;
-  -ms-flex-line-pack: center;
-  align-content: center;
-  background: #fff;
-  padding: 4em 0em;
-  box-shadow: -1px -1px 20px 0px #8fb8d3;
-}
-.content-login form {
-  text-align: center;
-  height: 100%;
-}
-.form-login {
-  padding: 1em 1em;
-  margin: 0px 0px 20px 0px;
-}
-.form-login h3 {
-  color: #004e66;
-  font-size: 1.5em;
-  padding-top: 1em;
-}
-.section-text {
-  margin: 20px 0px;
-}
-@media (max-width: 950px) {
-  .content-login {
-    width: 50%;
-    margin: 0% 0% 0% 50%;
-  }
-}
-@media (max-width: 750px) {
-  .content-login {
-    width: 80%;
-    margin: 0% 10%;
-  }
-}
-@media (max-width: 490px) {
-  .content-login {
+  .message{
+    color: red;
+    margin: 5px 0px 0px;
+    display: block;
     width: 100%;
-    margin: 2% 3%;
-    margin: 0%;
-    box-shadow: inset 0px 0px 0px 0px #fff;
   }
-}
+  #button{
+    margin-left: 25%
+  }
+  .input-field .prefix{
+    color: #004e66;
+  }
+  .content-login {
+    width: 30%;
+    height: 100%;
+    margin: 0% 5% 0% 65%;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    background: #fff;
+    padding: 4em 0em;
+    box-shadow: -1px -1px 20px 0px #8fb8d3;
+  }
+  .content-login form {
+    text-align: center;
+    height: 100%;
+  }
+  .form-login {
+    padding: 1em 1em;
+    margin: 0px 0px 20px 0px;
+  }
+  .form-login h3 {
+    color: #004e66;
+    font-size: 1.5em;
+    padding-top: 1em;
+  }
+  .section-text {
+    margin: 20px 0px;
+  }
+  @media (max-width: 950px) {
+    .content-login {
+      width: 50%;
+      margin: 0% 0% 0% 50%;
+    }
+  }
+  @media (max-width: 750px) {
+    .content-login {
+      width: 80%;
+      margin: 0% 10%;
+    }
+  }
+  @media (max-width: 490px) {
+    .content-login {
+      width: 100%;
+      margin: 2% 3%;
+      margin: 0%;
+      box-shadow: inset 0px 0px 0px 0px #fff;
+    }
+  }
 </style>
