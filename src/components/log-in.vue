@@ -49,7 +49,6 @@ export default {
     login: function (e) {
       const promise = firebase.auth().signInWithEmailAndPassword(email.value, password.value)
       .then((user) => {
-        alert("exito!");
         this.$router.push('home');
       });
       promise.catch(function(e) {debugger
@@ -57,26 +56,26 @@ export default {
       });
       e.preventDefault();
     },
-    singInGoogle: (e) => {
+    singInGoogle: function (e){
       let provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope('https://www.googleapis.com/auth/plus.login');
       firebase.auth().signInWithPopup(provider)
         .then((result) => {
-          alert("exito!");
           confgFirebase.saveDataRedirec(result.user);
+          this.$router.push('home');
         })
         .catch(error => {
           alert(error.message);
           });
       e.preventDefault();
     },
-    singInFacebok: (e) => {
+    singInFacebok: function (e){
       const provider = new firebase.auth.FacebookAuthProvider();
       provider.addScope('public_profile');
       firebase.auth().signInWithPopup(provider)
         .then( (result)=> {
-          alert("exito!");
           confgFirebase.saveDataRedirec(result.user);
+          this.$router.push('home');
         })
         .catch(error => {
           alert(error.message);
@@ -90,136 +89,151 @@ export default {
   }
 }
 </script>
-<style>
-.or {
-  margin: 5px 0px;
-  display: block;
-  width: 100%;
-  margin-bottom: 30px;
-}
-.icon-facebook,
-.icon-google,
-.icon-mail2 {
-  color: #fff;
-  font-size: 1.2em;
-  border-radius: 100%;
-  padding: 0.8em 1.2em;
-  margin: 0% 1%;
-  background: rgba(178, 178, 178, 0.4);
-  box-shadow: 0px 0px 4px 1px #ccc;
-  cursor: pointer;
-  font-weight: 900;
-}
-.icon-facebook:hover {
-  background: #354277;
-  box-shadow: 0px 0px 4px 1px rgba(204, 204, 204, 0.486);
-}
-.icon-google:hover {
-  background: #db4437;
-  box-shadow: 0px 0px 4px 1px rgba(204, 204, 204, 0.486);
-}
-.content-login {
-  width: 30%;
-  height: 100%;
-  margin: 0% 0% 0% 60%;
-  -ms-flex-line-pack: center;
-  align-content: center;
-  background: #fff;
-  padding: 2em 0em;
-  box-shadow: -1px -1px 20px 0px #8fb8d3;
-}
-.content-login form {
-  text-align: center;
-  height: 100%;
-}
-.logo {
-  padding: 40px 0px 0px 0px;
-}
-.logo img {
-  width: 150px;
-  background: #fff;
-  border-radius: 100%;
-}
-.form-login {
-  padding: 1em 1em;
-  margin: 0px 0px 20px 0px;
-}
-.form-login h3 {
-  color: #475586;
-  font-size: 1.5em;
-  padding-top: 1em;
-}
-.section-text {
-  margin: 20px 0px;
-}
-.section-value {
-  width: 100%;
-  border: none;
-  border-bottom: 0.5px solid #77777761;
-  margin: 20px 0px;
-  padding: 0.3em 0px;
-}
-.section-value:hover {
-  border-bottom: 1px solid #33b8bf;
-}
-.section-value input {
-  width: 90%;
-  border: none;
-  color: #313434;
-  font-size: 16px;
-  outline: none;
-  padding: 0.5em 0em 0em 0em;
-}
-#btnLogin {
-  width: 80%;
-  border: none;
-  outline: none;
-  padding: 1em 0em;
-  margin: 20px 0px;
-  margin-bottom: 25px;
-  color: #fff;
-  text-transform: uppercase;
-  background: #33b8bf;
-  cursor: pointer;
-}
-#messageValide,
-#mensaggeRegisterValide {
-  color: #ff4081;
-  font-size: 0.8em;
-  padding: 1em 0em 2em 0em;
-}
-.loginAditional {
-  align-content: center;
-}
+  <style>
+  html{
+    background: url(../assets/portada2.jpg) no-repeat;
+    background-size: cover;
+  }
+  body{
+      width: 100%;
+      height: 100%;
+      background: rgba(57, 49, 49, 0.64);
+  }
 
-.section-register {
-  padding: 3em 0.5em 0.5em 0.5em;
-}
-.section-register span {
-  color: #77777761;
-}
-.section-register a {
-  color: #33b8bf;
-  cursor: pointer;
-}
-@media (max-width: 950px) {
-  .content-login {
-    width: 50%;
-    margin: 0% 0% 0% 50%;
-  }
-}
-@media (max-width: 750px) {
-  .content-login {
-    width: 80%;
-    margin: 0% 10%;
-  }
-}
-@media (max-width: 490px) {
-  .content-login {
+  .or {
+    margin: 5px 0px;
+    display: block;
     width: 100%;
-    margin: 2% 3%;
-    margin: 0%;
-    box-shadow: inset 0px 0px 0px 0px #fff;
+    margin-bottom: 30px;
   }
-}
+  .icon-facebook,
+  .icon-google,
+  .icon-mail2 {
+    color: #fff;
+    font-size: 1.2em;
+    border-radius: 100%;
+    padding: 0.8em 1.2em;
+    margin: 0% 1%;
+    background: rgba(178, 178, 178, 0.4);
+    box-shadow: 0px 0px 4px 1px #ccc;
+    cursor: pointer;
+    font-weight: 900;
+  }
+  .icon-facebook:hover {
+    background: #354277;
+    box-shadow: 0px 0px 4px 1px rgba(204, 204, 204, 0.486);
+  }
+  .icon-google:hover {
+    background: #db4437;
+    box-shadow: 0px 0px 4px 1px rgba(204, 204, 204, 0.486);
+  }
+  .grey.lighten-4 {
+      background: #004e66 !important;
+      color: #fff !important;
+  }
+  .content-login {
+    width: 30%;
+    height: 100%;
+    margin: 0% 5% 0% 65%;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    background: #fff;
+    padding: 2em 0em;
+    box-shadow: -1px -1px 20px 0px #8fb8d3;
+  }
+  .content-login form {
+    text-align: center;
+    height: 100%;
+  }
+  .logo {
+    padding: 40px 0px 0px 0px;
+  }
+  .logo img {
+    width: 150px;
+    background: #fff;
+    border-radius: 100%;
+  }
+  .form-login {
+    padding: 1em 1em;
+    margin: 0px 0px 20px 0px;
+  }
+  .form-login h3 {
+    color: #004e66;
+    font-size: 1.5em;
+    padding-top: 1em;
+    text-align: center;
+  }
+  .section-text {
+    margin: 20px 0px;
+  }
+  .section-value {
+    width: 100%;
+    border: none;
+    border-bottom: 0.5px solid #77777761;
+    margin: 20px 0px;
+    padding: 0.3em 0px;
+  }
+  .section-value:hover {
+    border-bottom: 1px solid #33b8bf;
+  }
+  .section-value input {
+    width: 90%;
+    border: none;
+    color: #313434;
+    font-size: 16px;
+    outline: none;
+    padding: 0.5em 0em 0em 0em;
+  }
+  #btnLogin {
+    width: 80%;
+    border: none;
+    outline: none;
+    padding: 1em 0em;
+    margin: 20px 0px;
+    margin-bottom: 25px;
+    color: #fff;
+    text-transform: uppercase;
+    background: #33b8bf;
+    cursor: pointer;
+  }
+  #messageValide,
+  #mensaggeRegisterValide {
+    color: #ff4081;
+    font-size: 0.8em;
+    padding: 1em 0em 2em 0em;
+  }
+  .loginAditional {
+    align-content: center;
+  }
+
+  .section-register {
+    padding: 3em 0.5em 0.5em 0.5em;
+  }
+  .section-register span {
+    color: #77777761;
+  }
+  .section-register a {
+    color: #33b8bf;
+    cursor: pointer;
+  }
+  @media (max-width: 950px) {
+    .content-login {
+      width: 50%;
+      margin: 0% 0% 0% 50%;
+    }
+  }
+  @media (max-width: 750px) {
+    .content-login {
+      width: 80%;
+      margin: 0% 10%;
+    }
+  }
+  @media (max-width: 490px) {
+    .content-login {
+      width: 100%;
+      margin: 2% 3%;
+      margin: 0%;
+      box-shadow: inset 0px 0px 0px 0px #fff;
+    }
+  }
 </style>
