@@ -3,7 +3,7 @@
 <div id="section-login" class="content-login">
   <form>
       <div class="logo">
-        <img src="../assets/logo3.png" alt="logo">
+        <img src="https://scontent-scl1-1.xx.fbcdn.net/v/t1.15752-9/42170171_1045279938979326_7820292361115664384_n.png?_nc_cat=0&_nc_eui2=AeE5jCA4cZ1NilCA4ehUEyVSvA5Hu1kD4T5NzjkPBfZb9imld52U6iGiDCvvWIvS5TLuAOt9TmYWGJrABIfunldAoU87G9uHhimY_Xbh3las6g&oh=fbad08d3b69dd957753b2d39f16eb4e0&oe=5C22CFCE" alt="logo">
       </div>
       <div class="form-login">
         <div class="section-Text">
@@ -92,7 +92,7 @@ export default {
 </script>
 <style>
   html{
-    background: url(../assets/portada2.jpg) no-repeat;
+    background: url(https://scontent-scl1-1.xx.fbcdn.net/v/t1.15752-9/42195871_479964062509222_3485856196861100032_n.jpg?_nc_cat=0&_nc_eui2=AeGg6ej5GrHserr9oeH5UAgI1n7D9dTw3ks2v7rU3R13UKpMCyUZ77JlKPFk4ftTannbw4oBh_RVlYIpF7PNLZU497E_xjwkC4ZA3RDSPq4E5A&oh=dd4ae9cad49947d38f85aeb6bc6a61de&oe=5C16477C) no-repeat;
     background-size: cover;
   }
   body{

@@ -75,7 +75,6 @@ export default {
         postRef.on('value', data => {
           let temp = [];                     
           const dataPosts = data.val()
-          console.log(dataPosts)
           async.map(dataPosts, (post, callback2) => {
             const like = post.like
             if(typeView=== true && post.uidUser === firebase.auth().currentUser.uid){

@@ -33,7 +33,6 @@ const insertNewPost = (posts, privacy) => {
   firebase.database().ref('user-posts/' + userId.uid + '/' + newPostKey).set(postData)
 }
 const updatePost = (post, privacy, uidPost) => {
-  console.log('update')
   const { postRef, userId } = userData()
   let postData = {
     content: post,

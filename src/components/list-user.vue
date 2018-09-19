@@ -31,7 +31,6 @@ export default {
   created() {
     const users = firebase.database().ref().child('Usuarios').limitToFirst(9)
     users.on('value', user => {
-      console.log(user.val())
       this.items = user.val()
     })
   }
