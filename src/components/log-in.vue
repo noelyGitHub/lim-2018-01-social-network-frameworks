@@ -92,7 +92,7 @@ export default {
 </script>
 <style>
   html{
-    background: url(https://scontent-scl1-1.xx.fbcdn.net/v/t1.15752-9/42195871_479964062509222_3485856196861100032_n.jpg?_nc_cat=0&_nc_eui2=AeGg6ej5GrHserr9oeH5UAgI1n7D9dTw3ks2v7rU3R13UKpMCyUZ77JlKPFk4ftTannbw4oBh_RVlYIpF7PNLZU497E_xjwkC4ZA3RDSPq4E5A&oh=dd4ae9cad49947d38f85aeb6bc6a61de&oe=5C16477C) no-repeat;
+    background: url(https://scontent-scl1-1.xx.fbcdn.net/v/t1.15752-9/42195871_479964062509222_3485856196861100032_n.jpg?_nc_cat=0&_nc_eui2=AeGg6ej5GrHserr9oeH5UAgI1n7D9dTw3ks2v7rU3R13UKpMCyUZ77JlKPFk4ftTannbw4oBh_RVlYIpF7PNLZU497E_xjwkC4ZA3RDSPq4E5A&oh=dd4ae9cad49947d38f85aeb6bc6a61de&oe=5C16477C) no-repeat !important;
     background-size: cover;
   }
   body{

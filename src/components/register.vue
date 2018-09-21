@@ -48,12 +48,12 @@ export default {
   methods: {
     register: function(e) {
       let elem = this
-      if (txtemail.value != '' && txtpassword.value != '' && txtname != '' && txtlastname != '') {
-        if (confgFirebase.validateFormateEmail(txtemail.value) === true) {
-              firebase.auth().createUserWithEmailAndPassword(txtemail.value, txtpassword.value)
+      if (this.txtemail !== '' && this.txtpassword != '' && this.txtname != '' && this.txtlastname != '') {
+        if (confgFirebase.validateFormateEmail(this.txtemail) === true) {
+              firebase.auth().createUserWithEmailAndPassword(this.txtemail, this.txtpassword)
                 .then((user) => {
-                  const nameUsers = txtname.value + ' ' + txtlastname.value;
-                  confgFirebase.saveDataEmail(user, nameUsers, txtpassword.value, 'http://svgur.com/i/65U.svg');
+                  const nameUsers = this.txtname + ' ' + this.txtlastname;
+                  confgFirebase.saveDataEmail(user, nameUsers, this.txtpassword, 'http://svgur.com/i/65U.svg');
                   return user.user.updateProfile({ 'displayName': nameUsers, 'photoURL': 'http://svgur.com/i/65U.svg' });
                   this.$router.push('home');
                 })
@@ -61,7 +61,7 @@ export default {
                   elem.messages = confgFirebase.mesaggeFirebase(error.message)
                 });
             }else {
-              elem.messages = confgFirebase.mesaggeFirebase(error.message)
+              elem.messages = confgFirebase.validateFormateEmail(this.txtemail)
               }
           }else {
             elem.messages = 'Llenar todos los campos';
@@ -74,9 +74,9 @@ export default {
 <style>
   .message{
     color: red;
-    margin: 5px 0px 0px;
+    margin: 5px 0px 0px 25%;
     display: block;
-    width: 100%;
+    width: 75%;
   }
   #button{
     margin-left: 25%
