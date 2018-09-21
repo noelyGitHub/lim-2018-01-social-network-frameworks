@@ -231,8 +231,5 @@ export default {
     .content-post {
       margin: 0px;
     }
-    .items-post{
-      
-    }
   }
 </style>

@@ -44,7 +44,7 @@ export default {
   }
 }
 </script>
-<style>
+<style>/* 
   .hint-menu-account{
     display: none;
     position: absolute;
@@ -136,7 +136,7 @@ export default {
     color: #444;
     font-weight: normal;
     padding: .2em;
-    /*background: #Ead;*/
+    /*background: #Ead;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -148,5 +148,5 @@ export default {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-  }
+  } */
 </style>

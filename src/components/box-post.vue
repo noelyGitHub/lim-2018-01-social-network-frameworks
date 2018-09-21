@@ -81,7 +81,7 @@ export default {
 </script>
 <style>
 html{
-    background: #e6ecf0;
+    background: #e6ecf0 !important;
 }
 .devsite-main-content{
     background: red;
